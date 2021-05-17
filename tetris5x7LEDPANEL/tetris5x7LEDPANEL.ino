@@ -201,14 +201,16 @@ void setup() {
   }
   randomSeed(analogRead(0));
   //Initialize the first piece for the game
-  piece = pieces[random(4)];
+  //piece = pieces[random(4)];
+  new_piece();
 }
 
 void new_piece() {
   angle = random(4);
-  piece_id = random(4);         //tracks which piece is being addressed
-  shift_left = 0;       //tracks horizonatal location of piece, starts with a 1 offset
-  row_count = 0;        //keeps track of which row is being addressed
+  piece_id = random(4); //Don't need this       
+  shift_left = 0;      
+  row_count = 0;       
+  piece = pieces[piece_id];
 }
 
 void loop() {
@@ -231,9 +233,8 @@ void loop() {
     shift_left--;
   }
 
-  //4. Increment counter: Increment row counter and check for collision. 
+  //4. Increment counter: Increment row counter and check for collision.
   row_count++;
-
   if (collision() == true) {
     row_count--;
     add_piece();
